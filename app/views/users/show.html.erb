@@ -10,3 +10,13 @@
 <% if policy(@user).edit? %>
   <%= link_to "Edit your page", edit_user_path(@user.id)  %>
 <% end %>
+
+<h2 class="border-top">Transactions</h2>
+
+<% @transactions.each do |transaction| %>
+  <ul>
+    <li> <%= transaction.description %> - between <%= User.find(transaction.user_id).first_name %> and <%= @user.first_name %></li>
+  </ul>
+<% end %>
+
+<%= link_to "Book #{@user.first_name}", new_user_transaction_path(@user.id), class: "btn btn-primary" %>
