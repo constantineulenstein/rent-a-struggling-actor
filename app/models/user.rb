@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  mount_uploader :photo, PhotoUploader
   has_many :transactions
   has_many :trademarks
   # Include default devise modules. Others available are:

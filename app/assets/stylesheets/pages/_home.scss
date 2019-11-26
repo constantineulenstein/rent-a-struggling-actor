@@ -1,1 +1,7 @@
 // Specific CSS for your home-page
+a {
+  color: #343A40;
+  &:hover {
+    text-decoration: none;
+  }
+}
