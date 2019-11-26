@@ -1,4 +1,4 @@
-  const checkIfChanged = (event) => {
+const checkIfChanged = (event) => {
     const actorInfo = document.querySelector('.actor-clicked');
     if(event.currentTarget.checked) {
       actorInfo.style.display = "block";
@@ -8,12 +8,8 @@
     }
   };
 
-
 const showMoreIfActor = () => {
   const checkboxActor = document.querySelector('#actor');
-
-
-
   checkboxActor.addEventListener('change', checkIfChanged);
 }
 
