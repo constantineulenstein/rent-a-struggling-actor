@@ -5,6 +5,7 @@
       <br>
     </br>
     <p>Solve your life's problems by hiring a struggling actor</p>
+    <%= link_to "See all struggling actors", users_path, class: "btn btn-outline-light mt-5"  %>
     <!-- search bar -->
     <%= simple_form_for :search, url: root_path, method: :get do |f| %>
       <div class="search-form-control form-group mt-5">
