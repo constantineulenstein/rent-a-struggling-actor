@@ -11,12 +11,13 @@ class UsersController < ApplicationController
 
   def edit
     authorize @user
+    raise
   end
 
   def update
     @user.update(user_params)
-    redirect_to user_path(@user)
     authorize @user
+    redirect_to user_path(@user)
   end
 
   private

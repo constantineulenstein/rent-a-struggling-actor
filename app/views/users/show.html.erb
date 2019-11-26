@@ -1,0 +1,11 @@
+<h1>User</h1>
+
+<ul>
+  <li><%= @user.username %></li>
+  <li><%= @user.location %></li>
+  <li><%= @user.gender %></li>
+</ul>
+
+<% if policy(@user).edit? %>
+  <%= link_to "Edit your page", edit_user_path(@user.id)  %>
+<% end %>
