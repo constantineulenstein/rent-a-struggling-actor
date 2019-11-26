@@ -8,6 +8,9 @@
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "email" }%>
+    <%= f.input :username %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
     <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
@@ -15,7 +18,21 @@
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
-    <%= f.input :first_name %>
+    <div class="form-group">
+      <div class="form-check">
+        <%= f.check_box :actor, class: "form-check-input", id: "actor" %>
+        <%= f.label "Are you an actor?" %>
+      </div>
+    </div>
+
+    <div class="actor-clicked">
+      <%= f.input :gender %>
+      <%= f.input :age %>
+      <%= f.input :location, label: "Where do you live?" %>
+      <%= f.input :description, label: "Tell us something about yourself!" %>
+    </div>
+
+
   </div>
 
   <div class="form-actions">
