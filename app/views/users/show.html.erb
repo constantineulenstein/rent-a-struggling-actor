@@ -4,6 +4,7 @@
   <li><%= @user.username %></li>
   <li><%= @user.location %></li>
   <li><%= @user.gender %></li>
+  <li><%= cl_image_tag @user.photo %></li>
 </ul>
 
 <% if policy(@user).edit? %>

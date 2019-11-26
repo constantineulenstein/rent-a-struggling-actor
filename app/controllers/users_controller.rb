@@ -11,7 +11,6 @@ class UsersController < ApplicationController
 
   def edit
     authorize @user
-    raise
   end
 
   def update
