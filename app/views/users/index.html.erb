@@ -18,7 +18,7 @@
     <%= link_to user_path(user.id) do %>
     <div id="curve" class="card mb-4">
       <p class="text-center pt-3"><%= user.location %></p>
-      <%= user.photo.url.nil? ? (image_tag "user-solid.svg") : (cl_image_tag user.photo) %>
+      <%= user.photo.url.nil? ? (image_tag "user-solid.svg") : (cl_image_tag user.photo, width: 300, height: 300, crop: :fill) %>
       <div class="footer-up p-0">
         <svg id="curve">
           <path id="p" d="M0,200 Q80,100 400,200 V150 H0 V50" transform="translate(0 300)" />
