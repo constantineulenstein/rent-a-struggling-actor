@@ -4,7 +4,7 @@
     <div class="profile-photo">
 
 
-    <%= cl_image_tag @user.photo, class: "photo" %>
+    <%= cl_image_tag @user.photo, width: 300, height: 300, crop: :fill, class: "photo" %>
 
     </div>
 
