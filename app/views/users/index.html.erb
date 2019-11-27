@@ -1,20 +1,91 @@
-<div class="container">
-<h1>Users</h1>
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://assets3.thrillist.com/v1/image/2796246/size/gn-gift_guide_variable_c.jpg);">
+    <div class="container">
+      <h1>Struggling Actor's Index</h1>
+      <br>
+    </br>
+    <p>Select your struggling actor</p>
+
+    <!-- search bar -->
+    <%= simple_form_for :search, url: root_path, method: :get do |f| %>
+      <div class="search-form-control form-group mt-5">
+        <input class="form-control string required" type="text" name="search[query]" id="search_query" placeholder="Search with Actor's name or by category"/>
+        <button name="button" type="Search" class="btn btn-flat">
+          <i class="fas fa-search"></i> Search
+        </button>
+      </div>
+    <% end %>
+  </div>
+  </div>
+
+
+
+<!-- <div class="background"></div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- below is the previous code -->
+<div class="container card-box">
 
 
 <% @users.each do |user| %>
-  <div class="border-bottom">
-    <%= link_to user_path(user.id) do %>
+<div id="curve" class="card">
+    <div class="footer">
+        <div class="connections">
+            <div class="connection facebook"><div class="icon"></div></div>
+            <div class="connection twitter"><div class="icon"></div></div>
+            <div class="connection behance"><div class="icon"></div></div>
+        </div>
+        <svg id="curve">
+            <path id="p" d="M0,200 Q80,100 400,200 V150 H0 V50" transform="translate(0 300)" />
+            <!-- <rect id="dummyRect" x="0" y="0" height="450" width="400"
+      fill="transparent" /> -->
+            <!-- slide up-->
+            <animate xlink:href="#p" attributeName="d" to="M0,50 Q80,100 400,50 V150 H0 V50" fill="freeze" begin="dummyRect.mouseover" end="dummyRect.mouseout" dur="0.1s" id="bounce1" />
+            <!-- slide up and curve in -->
+            <animate xlink:href="#p" attributeName="d" to="M0,50 Q80,0 400,50 V150 H0 V50" fill="freeze" begin="bounce1.end" end="dummyRect.mouseout" dur="0.15s" id="bounce2" />
+            <!-- slide down and curve in -->
+            <animate xlink:href="#p" attributeName="d" to="M0,50 Q80,80 400,50 V150 H0 V50" fill="freeze" begin="bounce2.end" end="dummyRect.mouseout" dur="0.15s" id="bounce3" />
+            <!-- slide down and curve out -->
+            <animate xlink:href="#p" attributeName="d" to="M0,50 Q80,45 400,50 V150 H0 V50" fill="freeze" begin="bounce3.end" end="dummyRect.mouseout" dur="0.1s" id="bounce4" />
+            <!-- curve in -->
+            <animate xlink:href="#p" attributeName="d" to="M0,50 Q80,50 400,50 V150 H0 V50" fill="freeze" begin="bounce4.end" end="dummyRect.mouseout" dur="0.05s" id="bounce5" />
+
+            <animate xlink:href="#p" attributeName="d" to="M0,200 Q80,100 400,200 V150 H0 V50" fill="freeze" begin="dummyRect.mouseout" dur="0.15s" id="bounceOut" />
+        </svg>
+        <div class="info">
+            <div class="name"><%= user.first_name %>.<%= user.last_name %></div>
+            <div class="job">City: <%= user.location %></div>
+        </div>
+    </div>
+    <div class="card-blur"></div>
+</div>
+  <!-- <div class="card-trip">
+  <img src="http://u.lorenzoferrara.net/marlenesco/material-card/thumb-sean-penn.jpg" />
+
+    <%#= link_to user_path(user.id) do %>
     <ul>
-      <li><%= user.first_name %></li>
-      <li><%= user.last_name %></li>
-      <li><%= user.location %></li>
-      <li><%= user.username %></li>
+      <li>First Name: <%= user.first_name %></li>
+      <li>Last Name: <%= user.last_name %></li>
+      <li>User Location: <%= user.location %></li>
+      <li>User Name: <%= user.username %></li>
     </ul>
-    <% end %>
-  </div>
+    <% #end %>
+  </div> -->
 <% end %>
 
-
 </div>
+
+
 
