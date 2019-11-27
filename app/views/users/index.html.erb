@@ -40,8 +40,12 @@
 
 
 <% @users.each do |user| %>
-<div id="curve" class="card">
-    <div class="footer">
+<div id="curve" class="card" style="background-image: url(https://cn.bing.com/th?id=OIP.Zti8Qdq42G0XV8Ipd4IVpQHaE8&pid=Api&rs=1);">
+<p>Location: <%= user.location %></p>
+<%= link_to user_path(user.id) do %>
+<%= user.photo.url.nil? ? (image_tag "user-solid.svg") : (cl_image_tag user.photo) %>
+    <div class="footer p-0">
+
         <div class="connections">
             <div class="connection facebook"><div class="icon"></div></div>
             <div class="connection twitter"><div class="icon"></div></div>
@@ -64,28 +68,35 @@
 
             <animate xlink:href="#p" attributeName="d" to="M0,200 Q80,100 400,200 V150 H0 V50" fill="freeze" begin="dummyRect.mouseout" dur="0.15s" id="bounceOut" />
         </svg>
-        <div class="info">
+        <div class="info w-100">
             <div class="name"><%= user.first_name %>.<%= user.last_name %></div>
-            <div class="job">City: <%= user.location %></div>
+            <div class="job">City: <%= user.age %></div>
         </div>
     </div>
     <div class="card-blur"></div>
 </div>
-  <!-- <div class="card-trip">
+<% end %>
+<% end %>
+</div>
+
+
+<div class="container card-box">
+
+
+<!-- <%# @users.each do |user| %>
+  <div class="card-trip">
   <img src="http://u.lorenzoferrara.net/marlenesco/material-card/thumb-sean-penn.jpg" />
 
     <%#= link_to user_path(user.id) do %>
     <ul>
-      <li>First Name: <%= user.first_name %></li>
-      <li>Last Name: <%= user.last_name %></li>
-      <li>User Location: <%= user.location %></li>
-      <li>User Name: <%= user.username %></li>
+      <li>First Name: <%#= user.first_name %></li>
+      <li>Last Name: <%#= user.last_name %></li>
+      <li>User Location: <%#= user.location %></li>
+      <li>User Name: <%#= user.username %></li>
     </ul>
-    <% #end %>
-  </div> -->
-<% end %>
-
-</div>
-
+    <%# end %>
+  </div>
+  <%# end %>
+ -->
 
 
