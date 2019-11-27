@@ -1,0 +1,19 @@
+<div class="container">
+  <h2 class="my-3">Book <%= @user.first_name %></h2>
+
+  <%= simple_form_for [@user, @transaction] do |f| %>
+    <%= f.error_notification %>
+        <div class="form-inputs bg-light p-3">
+          <%= f.input :location %>
+          <%= f.input :date %>
+          <%= f.input :description %>
+        </div>
+    <div class="form-actions my-3">
+      <%= f.button :submit, "Book #{@user.first_name}", class: "btn btn-outline-dark" %>
+    </div>
+  <% end %>
+
+
+
+
+</div>

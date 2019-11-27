@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @transactions = Transaction.joins(:trademark).where("trademarks.user_id = ?", @user.id)
     authorize @user
   end
 
@@ -15,8 +16,8 @@ class UsersController < ApplicationController
 
   def update
     @user.update(user_params)
-    redirect_to user_path(@user)
     authorize @user
+    redirect_to user_path(@user)
   end
 
   private
