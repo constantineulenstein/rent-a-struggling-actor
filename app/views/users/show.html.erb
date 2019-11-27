@@ -1,22 +1,57 @@
-<h1>User</h1>
+<div class="main-container top">
 
-<ul>
-  <li><%= @user.username %></li>
-  <li><%= @user.location %></li>
-  <li><%= @user.gender %></li>
-  <li><%= cl_image_tag @user.photo %></li>
-</ul>
+  <div class="sidebar">
+    <div class="profile-photo">
 
-<% if policy(@user).edit? %>
-  <%= link_to "Edit your page", edit_user_path(@user.id)  %>
-<% end %>
+    <%= cl_image_tag @user.photo, class: "photo" %>
+    </div>
 
-<h2 class="border-top">Transactions</h2>
+    <h2> <%= @user.username %></h2>
 
-<% @transactions.each do |transaction| %>
-  <ul>
-    <li> <%= transaction.description %> - between <%= User.find(transaction.user_id).first_name %> and <%= @user.first_name %></li>
-  </ul>
-<% end %>
+    <ul>
+      <li><%= @user.gender %> • <%= @user.age %></li>
+      <li><%= @user.location %></li>
+    </ul>
 
-<%= link_to "Book #{@user.first_name}", new_user_transaction_path(@user.id), class: "btn btn-primary" %>
+    <% if policy(@user).edit? %>
+      <%= link_to "Edit your page", edit_user_registration_path  %>
+    <% end %>
+
+    <div class="btn-book">
+      <%= link_to "Book #{@user.username}", new_user_transaction_path(@user.id), class: "btn btn-primary button" %>
+    </div>
+  </div>
+
+  <div class="info">
+    <h1>Bio</h1>
+    <p> <%= @user.description %></p>
+  </div>
+
+</div>
+
+<div class="main-container">
+
+  <div class="sidebar">
+    <h4>Trademarks</h4>
+    <ul>
+      <% @user.trademarks.each do |trademark| %>
+      <ul class="list-inline">
+        <li><%= trademark.skill %></li>
+      </ul>
+    <% end %>
+    </ul>
+  </div>
+
+  <div class="info">
+    <h2>Transactions</h2>
+
+    <% @transactions.each do |transaction| %>
+      <ul>
+        <li> <%= transaction.description %> - between <%= User.find(transaction.user_id).first_name %> and <%= @user.first_name %></li>
+      </ul>
+    <% end %>
+  </div>
+
+</div>
+
+
