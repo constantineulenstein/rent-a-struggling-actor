@@ -10,7 +10,9 @@ const checkIfChanged = (event) => {
 
 const showMoreIfActor = () => {
   const checkboxActor = document.querySelector('#actor');
-  checkboxActor.addEventListener('change', checkIfChanged);
+  if (checkboxActor) {
+    checkboxActor.addEventListener('change', checkIfChanged);
+  }
 }
 
 export { showMoreIfActor };
