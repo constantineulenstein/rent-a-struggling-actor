@@ -7,6 +7,12 @@ class UsersController < ApplicationController
 
   def show
     @transactions = Transaction.joins(:trademark).where("trademarks.user_id = ?", @user.id)
+    @markers = @transactions.map do |transaction|
+      {
+        lat: transaction.latitude,
+        lng: transaction.longitude
+      }
+    end
     authorize @user
   end
 
