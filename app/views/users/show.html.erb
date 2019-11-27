@@ -15,9 +15,9 @@
       <li><%= @user.location %></li>
     </ul>
 
-    <% if policy(@user).edit? %>
+<!--     <% if policy(@user).edit? %>
       <%= link_to "Edit your page", edit_user_registration_path  %>
-    <% end %>
+    <% end %> -->
 
     <div class="btn-book">
       <%= link_to "Book #{@user.username}", new_user_transaction_path(@user.id), class: "btn btn-primary button" %>
