@@ -2,11 +2,15 @@
 @import "home";
 @import "signup";
 
+@import "show";
+
 .card-box {
-  background-color: blue;
   display: flex;
   flex-wrap: wrap;
   padding: 50px 20px;
   justify-content: space-evenly;
 }
-@import "show";
+
+a:hover {
+  color: black;
+}
