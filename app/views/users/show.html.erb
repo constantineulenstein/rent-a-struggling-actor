@@ -3,6 +3,7 @@
   <div class="sidebar">
     <div class="profile-photo">
 
+
     <%= cl_image_tag @user.photo, class: "photo" %>
 
     </div>
@@ -23,11 +24,10 @@
     </div>
   </div>
 
-  <div class="info">
+  <div class="info-part">
     <h1>Bio</h1>
     <p> <%= @user.description %></p>
   </div>
-
 </div>
 
 <div class="main-container">
@@ -39,11 +39,11 @@
       <ul class="list-inline">
         <li><%= trademark.skill %></li>
       </ul>
-    <% end %>
+      <% end %>
     </ul>
   </div>
 
-  <div class="info">
+  <div class="info-part">
     <h2>Transactions</h2>
 
     <% @transactions.each do |transaction| %>
@@ -52,7 +52,4 @@
       </ul>
     <% end %>
   </div>
-
 </div>
-
-
