@@ -1,0 +1,23 @@
+<div class="container">
+  <h2 class="my-3">Edit Transaction</h2>
+
+  <%= simple_form_for [@user, @transaction] do |f| %>
+    <%= f.error_notification %>
+        <%= f.input :trademark_id, collection: @trademark_array, label: "What service would you like #{@user.first_name} to do?" %>
+        <div class="new-service">
+          <%= f.input :optional_title, label: "Cool! Ask him to do whatever you want!", input_html: {value: @transaction.optional_title} %>
+          <%= f.input :price_per_hour, label: "How much are you willing to pay per hour?", input_html: {value: @transaction.price_per_hour}  %>
+        </div>
+        <%= f.input :location, input_html: {value: @transaction.location}  %>
+        <%= f.input :date, input_html: {value: @transaction.date}  %>
+        <%= f.input :description, input_html: {value: @transaction.description}  %>
+        </div>
+    <div class="form-actions my-3">
+      <%= f.button :submit, "Edit Transaction", class: "btn btn-outline-dark" %>
+    </div>
+  <% end %>
+
+
+
+
+</div>
