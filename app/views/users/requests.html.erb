@@ -1,0 +1,41 @@
+<div class="wrapper">
+  <div class="pending-container">
+    <h2>Pending Transactions</h2>
+
+    <% @user.transactions.each do |transaction| %>
+      <% if transaction.approved.nil? %>
+        <div class="approval-request">
+          <div><%=transaction.description %> - between <%= User.find(transaction.user_id).first_name %> and <%= @user.first_name %></div> <div><%= link_to 'Approve', user_request_approve_path(@transaction, :id => transaction.id), class: "btn btn-primary" %><%= link_to 'Reject', user_request_reject_path(@transaction, :id => transaction.id), class: "btn btn-danger" %></div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="request-lists">
+
+    <div class="info-part">
+      <h2>Approved Transactions</h2>
+
+      <% @user.transactions.each do |transaction| %>
+        <% if transaction.approved %>
+          <div class="approval-request">
+            <div><%=transaction.description %> - between <%= User.find(transaction.user_id).first_name %> and <%= @user.first_name %></div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="info-part">
+      <h2>Rejected Transactions</h2>
+
+      <% @user.transactions.each do |transaction| %>
+        <% if transaction.approved == false %>
+          <div class="approval-request">
+            <div><%=transaction.description %> - between <%= User.find(transaction.user_id).first_name %> and <%= @user.first_name %></div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+</div>

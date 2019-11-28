@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :find_user, only: [:show, :edit, :update]
+  before_action :find_user, only: [:show, :edit, :update, :requests]
 
   def index
     if params[:search].present?
@@ -27,6 +27,7 @@ class UsersController < ApplicationController
     redirect_to user_path(@user)
   end
 
+
   def convert_markers(things)
       things.map do |transaction|
       {
@@ -43,7 +44,11 @@ class UsersController < ApplicationController
         price_per_hour: transaction.price_per_hour,
         id: transaction.id
       }
-    end
+   end
+
+  
+  def requests
+    authorize @user
   end
 
   private
