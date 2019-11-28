@@ -6,13 +6,13 @@ body {
 
 
 .card {
-    border-radius: 8px;
+    border-radius: 5px;
     height: 300px;
     width: 250px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    box-shadow: 0 0 80px -10px black;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
     overflow: hidden;
 }
 
@@ -20,16 +20,16 @@ body {
     position: absolute;
     height: 100%;
     width: calc(100% + 1px);
-    background-color: black;
+    background-color: rgba(0,0,0,0.2);;
     opacity: 0;
-    transition: opacity 0.15s ease-in;
+    transition: opacity 0.1s ease-in;
 }
 
 .card:hover .card-blur {
     opacity: 0.6;
 }
 
-.footer {
+.footer-up {
     z-index: 1;
     position: absolute;
     height: 80px;
