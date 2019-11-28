@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update]
 
   def index
-    if params[:search][:query].present?
+    if params[:search].present?
       @users = policy_scope(User).where(["actor = ?", true]).global_search(params[:search][:query]).order(created_at: :desc)
     else
       @users = policy_scope(User).where(["actor = ?", true]).order(created_at: :desc)
