@@ -11,7 +11,8 @@ class UsersController < ApplicationController
     @markers = @transactions.map do |transaction|
       {
         lat: transaction.latitude,
-        lng: transaction.longitude
+        lng: transaction.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { transaction: transaction })
       }
     end
     authorize @user
