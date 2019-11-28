@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_28_053105) do
+ActiveRecord::Schema.define(version: 2019_11_28_082305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2019_11_28_053105) do
     t.string "optional_title"
     t.integer "price_per_hour"
     t.boolean "existing", default: true
+    t.boolean "approved"
     t.index ["trademark_id"], name: "index_transactions_on_trademark_id"
     t.index ["user_id"], name: "index_transactions_on_user_id"
   end

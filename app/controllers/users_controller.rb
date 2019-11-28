@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :find_user, only: [:show, :edit, :update]
+  before_action :find_user, only: [:show, :edit, :update, :requests]
 
   def index
     if params[:search].present?
@@ -31,6 +31,10 @@ class UsersController < ApplicationController
     @user.update(user_params)
     authorize @user
     redirect_to user_path(@user)
+  end
+
+  def requests
+    authorize @user
   end
 
   private

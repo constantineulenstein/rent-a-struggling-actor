@@ -24,4 +24,16 @@ class UserPolicy < ApplicationPolicy
   def update?
     record == user
   end
+
+  def requests?
+    record == user
+  end
+
+  def approve?
+    record == user
+  end
+
+  def reject?
+    record == user
+  end
 end
