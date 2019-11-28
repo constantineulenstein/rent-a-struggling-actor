@@ -2,9 +2,9 @@
 
 
 <div class="container">
-  <%= simple_form_for :search, url: root_path, method: :get do |f| %>
+  <%= simple_form_for :search, url: users_path, method: :get do |f| %>
     <div class="search-form-control form-group mt-5">
-      <input class="form-control string required" type="text" name="search[query]" id="search_query" placeholder="Search with Actor's name or by category"/>
+      <input class="form-control string required" type="text" name="search[query]" id="search_query" placeholder="Search with Actor's name or by skills, otherwise leave blank to see all"/>
       <button name="button" type="Search" class="btn btn-flat">
         <i class="fas fa-search"></i> Search
       </button>
@@ -13,42 +13,38 @@
 <!-- below is the previous code -->
   <div class="card-box mt-0 pt-0">
 
-
-  <% @users.each do |user| %>
-    <%= link_to user_show_path(user.id) do %>
-    <div id="curve" class="card mb-4">
-      <p class="text-center pt-3"><%= user.location %></p>
-      <%= user.photo.url.nil? ? (image_tag "user-solid.svg") : (cl_image_tag user.photo, width: 300, height: 300, crop: :fill) %>
-      <div class="footer-up p-0">
-        <svg id="curve">
-          <path id="p" d="M0,200 Q80,100 400,200 V150 H0 V50" transform="translate(0 300)" />
-          <!-- <rect id="dummyRect" x="0" y="0" height="450" width="400"
+    <% @users.each do |user| %>
+      <%= link_to user_show_path(user.id) do %>
+        <div id="curve" class="card mb-4">
+          <%= user.photo.url.nil? ? (image_tag "user-solid.svg") : (cl_image_tag user.photo, width: 300, height: 350, crop: :fill) %>
+          <div class="footer-up p-0">
+            <svg id="curve">
+              <path id="p" d="M0,200 Q80,100 400,200 V150 H0 V50" transform="translate(0 300)" />
+              <!-- <rect id="dummyRect" x="0" y="0" height="450" width="400"
           fill="transparent" /> -->
-          <!-- slide up-->
-          <animate xlink:href="#p" attributeName="d" to="M0,50 Q80,100 400,50 V150 H0 V50" fill="freeze" begin="dummyRect.mouseover" end="dummyRect.mouseout" dur="0.1s" id="bounce1" />
-          <!-- slide up and curve in -->
-          <animate xlink:href="#p" attributeName="d" to="M0,50 Q80,0 400,50 V150 H0 V50" fill="freeze" begin="bounce1.end" end="dummyRect.mouseout" dur="0.15s" id="bounce2" />
-          <!-- slide down and curve in -->
-          <animate xlink:href="#p" attributeName="d" to="M0,50 Q80,80 400,50 V150 H0 V50" fill="freeze" begin="bounce2.end" end="dummyRect.mouseout" dur="0.15s" id="bounce3" />
-          <!-- slide down and curve out -->
-          <animate xlink:href="#p" attributeName="d" to="M0,50 Q80,45 400,50 V150 H0 V50" fill="freeze" begin="bounce3.end" end="dummyRect.mouseout" dur="0.1s" id="bounce4" />
-          <!-- curve in -->
-          <animate xlink:href="#p" attributeName="d" to="M0,50 Q80,50 400,50 V150 H0 V50" fill="freeze" begin="bounce4.end" end="dummyRect.mouseout" dur="0.05s" id="bounce5" />
-
-          <animate xlink:href="#p" attributeName="d" to="M0,200 Q80,100 400,200 V150 H0 V50" fill="freeze" begin="dummyRect.mouseout" dur="0.15s" id="bounceOut" />
-        </svg>
-        <div class="info w-100 bg-light p-2">
-            <div class="name"><%= user.first_name %> <%= user.last_name %></div>
-            <div class="job d-flex justify-content-between">
-              <p>Age: <%= user.age %></p>
-              <p>Gender: <%= user.gender %></p>
+              <!-- slide up-->
+              <animate xlink:href="#p" attributeName="d" to="M0,50 Q80,100 400,50 V150 H0 V50" fill="freeze" begin="dummyRect.mouseover" end="dummyRect.mouseout" dur="0.1s" id="bounce1" />
+              <!-- slide up and curve in -->
+              <animate xlink:href="#p" attributeName="d" to="M0,50 Q80,0 400,50 V150 H0 V50" fill="freeze" begin="bounce1.end" end="dummyRect.mouseout" dur="0.15s" id="bounce2" />
+              <!-- slide down and curve in -->
+              <animate xlink:href="#p" attributeName="d" to="M0,50 Q80,80 400,50 V150 H0 V50" fill="freeze" begin="bounce2.end" end="dummyRect.mouseout" dur="0.15s" id="bounce3" />
+              <!-- slide down and curve out -->
+              <animate xlink:href="#p" attributeName="d" to="M0,50 Q80,45 400,50 V150 H0 V50" fill="freeze" begin="bounce3.end" end="dummyRect.mouseout" dur="0.1s" id="bounce4" />
+              <!-- curve in -->
+              <animate xlink:href="#p" attributeName="d" to="M0,50 Q80,50 400,50 V150 H0 V50" fill="freeze" begin="bounce4.end" end="dummyRect.mouseout" dur="0.05s" id="bounce5" />
+              <animate xlink:href="#p" attributeName="d" to="M0,200 Q80,100 400,200 V150 H0 V50" fill="freeze" begin="dummyRect.mouseout" dur="0.15s" id="bounceOut" />
+            </svg>
+            <div class="info bg-light">
+              <div class="name"><%= user.first_name %> <%= user.last_name %></div>
+              <p class="text-center"><%= user.location %> - <%= user.gender %> - <%= user.age %></p>
+              <div class="job d-flex justify-content-between">
+              </div>
             </div>
+          </div>
+        <div class="card-blur"></div>
         </div>
-      </div>
-      <div class="card-blur"></div>
-  </div>
-  <% end %>
-  <% end %>
+      <% end %>
+    <% end %>
   </div>
 
 </div>

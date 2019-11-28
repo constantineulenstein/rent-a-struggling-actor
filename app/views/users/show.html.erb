@@ -53,3 +53,14 @@
     <% end %>
   </div>
 </div>
+
+
+<div class="info-part">
+  <% @markers.each_with_index do |marker, index| %>
+    <div class="map"></div>
+  <% end %>
+</div>
+
+<script>
+  let markers = <%= @markers.to_json.to_s.html_safe %>
+</script>

@@ -3,7 +3,11 @@ class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update]
 
   def index
-    @users = policy_scope(User).order(created_at: :desc).where(["actor = ?", true])
+    if params[:search].present?
+      @users = policy_scope(User).where(["actor = ?", true]).global_search(params[:search][:query]).order(created_at: :desc)
+    else
+      @users = policy_scope(User).where(["actor = ?", true]).order(created_at: :desc)
+    end
   end
 
   def show
@@ -11,7 +15,8 @@ class UsersController < ApplicationController
     @markers = @transactions.map do |transaction|
       {
         lat: transaction.latitude,
-        lng: transaction.longitude
+        lng: transaction.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { transaction: transaction })
       }
     end
     authorize @user

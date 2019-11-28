@@ -7,8 +7,8 @@ body {
 
 .card {
     border-radius: 5px;
-    height: 300px;
-    width: 250px;
+    height: 350px;
+    width: 300px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -113,12 +113,25 @@ svg#curve {
 }
 
 .info {
-  font-family: Inconsolata;
-    padding-left: 20px;
+  font-family: 'Amatic SC', cursive;
+    // padding-left: 20px;
     transform: translateY(250px);
-
     transition: transform 1s cubic-bezier(.31,1.21,.64,1.02);
 }
+
+.info .name {
+  width: 100%;
+  font-size: 33px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.info p {
+  width: 100%;
+  font-size: 20px;
+}
+
+
 
 .card:hover .info {
     transform: translateY(0px);
@@ -126,7 +139,6 @@ svg#curve {
 
 .name {
     font-weight: bolder;
-    padding-top: 5px;
 }
 
 .job {
