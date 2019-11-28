@@ -41,6 +41,26 @@ class TransactionsController < ApplicationController
     return array
   end
 
+  def approve
+    @transaction_id = params[:id]
+    @transaction = Transaction.find(@transaction_id)
+    @transaction.approved = true
+    @transaction.save
+    @user = User.find(@transaction.user_id)
+    authorize @user
+    redirect_to user_requests_path(current_user)
+  end
+
+  def reject
+    @transaction_id = params[:id]
+    @transaction = Transaction.find(@transaction_id)
+    @transaction.approved = false
+    @transaction.save
+    @user = User.find(@transaction.user_id)
+    authorize @user
+    redirect_to user_requests_path(current_user)
+  end
+
   private
 
   def transaction_params
