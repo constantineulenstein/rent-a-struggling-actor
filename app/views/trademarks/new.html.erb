@@ -1,0 +1,15 @@
+<div class="container">
+  <h2 class="my-3">Add a new service</h2>
+
+  <%= simple_form_for [@user, @trademark] do |f| %>
+    <%= f.error_notification %>
+        <div class="form-inputs bg-light p-3">
+          <%= f.input :skill %>
+          <%= f.input :price_per_hour %>
+        </div>
+    <div class="form-actions my-3">
+      <%= f.button :submit, "Add service", class: "btn btn-outline-dark" %>
+    </div>
+  <% end %>
+
+</div>
