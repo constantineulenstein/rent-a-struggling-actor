@@ -1,58 +1,61 @@
 <div class="main-container top">
+  <div class="row">
+    <div class="col-12 col-lg-4">
+    <div class="sidebar-left">
+      <div class="sidebar">
+        <div class="profile-photo">
+          <%= cl_image_tag @user.photo, width: 300, height: 300, crop: :fill, class: "photo" %>
+        </div>
 
-  <div class="sidebar">
-    <div class="profile-photo">
+        <h2> <%= @user.username %></h2>
 
+        <ul>
+          <li><%= @user.gender %> • <%= @user.age %></li>
+          <li><%= @user.location %></li>
+        </ul>
 
-    <%= cl_image_tag @user.photo, width: 300, height: 300, crop: :fill, class: "photo" %>
+    <!--     <% if policy(@user).edit? %>
+          <%= link_to "Edit your page", edit_user_registration_path  %>
+        <% end %> -->
 
+        <div class="btn-book">
+          <%= link_to "Book #{@user.username}", new_user_transaction_path(@user.id), class: "btn btn-primary button" %>
+        </div>
+      </div>
+
+      <div class="sidebar mt-3 ">
+        <h2>Bio</h2>
+        <p> <%= @user.description %></p>
+        </ul>
+      </div>
+    </div>
     </div>
 
-    <h2> <%= @user.username %></h2>
 
-    <ul>
-      <li><%= @user.gender %> • <%= @user.age %></li>
-      <li><%= @user.location %></li>
-    </ul>
 
-<!--     <% if policy(@user).edit? %>
-      <%= link_to "Edit your page", edit_user_registration_path  %>
-    <% end %> -->
 
-    <div class="btn-book">
-      <%= link_to "Book #{@user.username}", new_user_transaction_path(@user.id), class: "btn btn-primary button" %>
-    </div>
-  </div>
+    <div class="col-12 col-lg-8 ">
 
-  <div class="info-part">
-    <h1>Bio</h1>
-    <p> <%= @user.description %></p>
-  </div>
-</div>
+    <div class="info-part text-center " >
+      <h1><i class="fas fa-comments-dollar"></i> Trademarks and Prices</h1>
 
-<div class="main-container">
-
-  <div class="sidebar">
-    <h4>Trademarks</h4>
-    <ul>
-      <% @user.trademarks.each do |trademark| %>
-      <ul class="list-inline">
-        <li><%= trademark.skill %></li>
-      </ul>
-      <% end %>
-    </ul>
-  </div>
-
-  <div class="info-part">
-    <h2>Transactions</h2>
-
-    <% @transactions.each do |transaction| %>
       <ul>
-        <li> <%= transaction.description %> - between <%= User.find(transaction.user_id).first_name %> and <%= @user.first_name %></li>
+        <% @user.trademarks.each do |trademark| %>
+        <ul class="list-inline ">
+        </ul>
+          <li><%= trademark.skill %> - RMB 100 </li>
+        <% end %>
+    </div>
       </ul>
-    <% end %>
+    </div>
+    </div>
+
   </div>
 </div>
+
+
+
+
 
 <div class="transactions">
   <% @markers.each_with_index do |marker, index| %>
