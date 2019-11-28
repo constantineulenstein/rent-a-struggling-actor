@@ -22,7 +22,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    record == user
+    return true#record == user
   end
 
   def requests?

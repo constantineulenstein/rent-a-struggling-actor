@@ -12,13 +12,7 @@ class UsersController < ApplicationController
 
   def show
     @transactions = Transaction.joins(:trademark).where("trademarks.user_id = ?", @user.id)
-    @markers = @transactions.map do |transaction|
-      {
-        lat: transaction.latitude,
-        lng: transaction.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { transaction: transaction })
-      }
-    end
+    @markers = convert_markers(@transactions)
     authorize @user
   end
 
@@ -33,6 +27,26 @@ class UsersController < ApplicationController
     redirect_to user_path(@user)
   end
 
+
+  def convert_markers(things)
+      things.map do |transaction|
+      {
+        lat: transaction.latitude,
+        lng: transaction.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { transaction: transaction }),
+        description: transaction.description,
+        date: transaction.date,
+        location: transaction.location,
+        trademark_id: transaction.trademark_id,
+        user_id: transaction.user_id,
+        existing: transaction.existing,
+        optional_title: transaction.optional_title,
+        price_per_hour: transaction.price_per_hour,
+        id: transaction.id
+      }
+   end
+
+  
   def requests
     authorize @user
   end

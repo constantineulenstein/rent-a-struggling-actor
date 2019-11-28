@@ -25,11 +25,22 @@ class TransactionsController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:user_id])
+    @transaction = Transaction.find(params[:id])
+    @trademark_array = create_array(@user.trademarks)
+    authorize @user
   end
 
   def update
+    @user = User.find(params[:user_id])
+    # user_id is not passed, and therefore update is not possible
     @transaction.update(transaction_params)
-    redirect_to user_path(@user)
+    redirect_to user_show_path(@user)
+    authorize @user
+  end
+
+  def destroy
+    raise
   end
 
   def create_array(services)
