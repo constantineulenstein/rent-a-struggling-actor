@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :find_user, only: [:show, :edit, :update]
+  before_action :find_user, only: [:show, :edit, :update, :requests]
 
   def index
     if params[:search].present?
@@ -12,13 +12,7 @@ class UsersController < ApplicationController
 
   def show
     @transactions = Transaction.joins(:trademark).where("trademarks.user_id = ?", @user.id)
-    @markers = @transactions.map do |transaction|
-      {
-        lat: transaction.latitude,
-        lng: transaction.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { transaction: transaction })
-      }
-    end
+    @markers = convert_markers(@transactions)
     authorize @user
   end
 
@@ -31,6 +25,31 @@ class UsersController < ApplicationController
     @user.update(user_params)
     authorize @user
     redirect_to user_path(@user)
+  end
+
+
+  def convert_markers(things)
+      things.map do |transaction|
+      {
+        lat: transaction.latitude,
+        lng: transaction.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { transaction: transaction }),
+        description: transaction.description,
+        date: transaction.date,
+        location: transaction.location,
+        trademark_id: transaction.trademark_id,
+        user_id: transaction.user_id,
+        existing: transaction.existing,
+        optional_title: transaction.optional_title,
+        price_per_hour: transaction.price_per_hour,
+        id: transaction.id
+      }
+    end
+  end
+
+
+  def requests
+    authorize @user
   end
 
   private
