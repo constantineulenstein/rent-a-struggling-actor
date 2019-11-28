@@ -1,3 +1,6 @@
+
+
+
 <div class="container">
   <%= simple_form_for :search, url: users_path, method: :get do |f| %>
     <div class="search-form-control form-group mt-5">
@@ -7,10 +10,11 @@
       </button>
     </div>
   <% end %>
-  <!-- below is the previous code -->
+<!-- below is the previous code -->
   <div class="card-box mt-0 pt-0">
+
     <% @users.each do |user| %>
-      <%= link_to user_path(user.id) do %>
+      <%= link_to user_show_path(user.id) do %>
         <div id="curve" class="card mb-4">
           <%= user.photo.url.nil? ? (image_tag "user-solid.svg") : (cl_image_tag user.photo, width: 300, height: 350, crop: :fill) %>
           <div class="footer-up p-0">
@@ -37,12 +41,16 @@
               </div>
             </div>
           </div>
-          <div class="card-blur"></div>
+        <div class="card-blur"></div>
         </div>
       <% end %>
     <% end %>
   </div>
+
 </div>
+
+
+
 <!-- <%# @users.each do |user| %>
   <div class="card-trip">
   <img src="http://u.lorenzoferrara.net/marlenesco/material-card/thumb-sean-penn.jpg" />
@@ -58,3 +66,5 @@
   </div>
   <%# end %>
  -->
+
+

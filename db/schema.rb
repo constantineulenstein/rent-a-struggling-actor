@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_28_025714) do
+ActiveRecord::Schema.define(version: 2019_11_28_053105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2019_11_28_025714) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "price_per_hour"
     t.index ["user_id"], name: "index_trademarks_on_user_id"
   end
 
@@ -42,6 +43,9 @@ ActiveRecord::Schema.define(version: 2019_11_28_025714) do
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
+    t.string "optional_title"
+    t.integer "price_per_hour"
+    t.boolean "existing", default: true
     t.index ["trademark_id"], name: "index_transactions_on_trademark_id"
     t.index ["user_id"], name: "index_transactions_on_user_id"
   end
