@@ -15,7 +15,7 @@
 
 
   <% @users.each do |user| %>
-    <%= link_to user_path(user.id) do %>
+    <%= link_to user_show_path(user.id) do %>
     <div id="curve" class="card mb-4">
       <p class="text-center pt-3"><%= user.location %></p>
       <%= user.photo.url.nil? ? (image_tag "user-solid.svg") : (cl_image_tag user.photo, width: 300, height: 300, crop: :fill) %>
