@@ -44,9 +44,10 @@ class UsersController < ApplicationController
         price_per_hour: transaction.price_per_hour,
         id: transaction.id
       }
-   end
+    end
+  end
 
-  
+
   def requests
     authorize @user
   end
