@@ -33,10 +33,10 @@ class TransactionsController < ApplicationController
 
   def update
     @user = User.find(params[:user_id])
-    # user_id is not passed, and therefore update is not possible
-    @transaction.update(transaction_update_params)
+    @transaction.update(transaction_update_params(current_user.id))
     redirect_to user_show_path(@user)
     authorize @user
+    # Trademark id is not passed, therefore rollnack thorugh validation
   end
 
   def destroy
@@ -78,8 +78,10 @@ class TransactionsController < ApplicationController
     params.require(:transaction).permit(:user_id, :location, :date, :description, :trademark_id, :optional_title, :price_per_hour)
   end
 
-  def transaction_update_params
-    params.require(:transaction).permit(:location, :date, :description, :trademark_id, :optional_title, :price_per_hour)
+  def transaction_update_params(trans)
+    data = params.require(:transaction).permit(:location, :date, :description, :trademark_id, :optional_title, :price_per_hour)
+    data[:user_id] = trans
+    return data
   end
 
   def find_transaction
