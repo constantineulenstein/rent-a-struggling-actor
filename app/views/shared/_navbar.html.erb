@@ -6,7 +6,7 @@
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
         <li class="nav-item">
-          <%= link_to "Requests", "#", class: "nav-link" %>
+          <%= link_to "Requests", user_requests_path(current_user.id), class: "nav-link" %>
         </li>
         <li class="nav-item dropdown ml-3">
           <%= current_user.photo.url.nil? ? (image_tag "user-solid.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) : (cl_image_tag current_user.photo, width: 40, height: 40, crop: :fill, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
