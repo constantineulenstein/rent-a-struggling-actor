@@ -22,7 +22,6 @@ class TrademarksController < ApplicationController
     @user = User.find(params[:user_id])
     @trademark = Trademark.find(params[:id])
     authorize @user
-    raise
   end
 
   def update
