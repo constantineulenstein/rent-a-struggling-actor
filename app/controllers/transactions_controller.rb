@@ -34,6 +34,11 @@ class TransactionsController < ApplicationController
   def update
     @user = User.find(params[:user_id])
     @transaction.update(transaction_update_params(current_user.id))
+    if @transaction[:trademark_id] == 0
+      @transaction[:trademark_id] = @user.trademarks.first.id
+      @transaction.existing = false
+    end
+    @transaction.save
     redirect_to user_show_path(@user)
     authorize @user
     # Trademark id is not passed, therefore rollnack thorugh validation
@@ -81,6 +86,7 @@ class TransactionsController < ApplicationController
   def transaction_update_params(trans)
     data = params.require(:transaction).permit(:location, :date, :description, :trademark_id, :optional_title, :price_per_hour)
     data[:user_id] = trans
+    # data[:trademark_id] =
     return data
   end
 
