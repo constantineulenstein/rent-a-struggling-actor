@@ -46,14 +46,18 @@
                 <br>
                 <p> <%= trademark.skill %> </p>
               </div>
-              <div class="trademark-category-icons">
-                <%= link_to edit_user_trademark_path(current_user.id,trademark.id) do  %>
-                  <i class="fas fa-pen mr-3"></i>
+              <% if current_user.present? %>
+                <% if trademark.user_id == current_user.id %>
+                  <div class="trademark-category-icons">
+                    <%= link_to edit_user_trademark_path(current_user.id,trademark.id) do  %>
+                      <i class="fas fa-pen mr-3"></i>
+                    <% end %>
+                    <%= link_to user_trademark_path(current_user.id,trademark.id), method: 'DELETE' do  %>
+                      <i class="fas fa-trash-alt"></i>
+                    <% end %>
+                  </div>
                 <% end %>
-                <%= link_to user_trademark_path(current_user.id,trademark.id), method: 'DELETE' do  %>
-                  <i class="fas fa-trash-alt"></i>
-                <% end %>
-              </div>
+              <% end %>
             </div>
           <% end %>
         </div>
