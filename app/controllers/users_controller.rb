@@ -12,7 +12,6 @@ class UsersController < ApplicationController
 
   def show
     @transactions = Transaction.joins(:trademark).where("trademarks.user_id = ?", @user.id)
-        raise
     @markers = convert_markers(@transactions)
     authorize @user
   end
