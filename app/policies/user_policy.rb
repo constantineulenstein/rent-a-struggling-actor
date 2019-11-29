@@ -25,6 +25,10 @@ class UserPolicy < ApplicationPolicy
     return true#record == user
   end
 
+  def destroy?
+    return true
+  end
+
   def requests?
     record == user
   end

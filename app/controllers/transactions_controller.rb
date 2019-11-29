@@ -1,5 +1,5 @@
 class TransactionsController < ApplicationController
-  before_action :find_transaction, only: [:edit, :update]
+  before_action :find_transaction, only: [:edit, :update, :destroy]
 
   def new
     @user = User.find(params[:user_id])
@@ -45,7 +45,10 @@ class TransactionsController < ApplicationController
   end
 
   def destroy
-    raise
+    @user = User.find(params[:user_id])
+    @transaction.destroy
+    redirect_to user_show_path(@user)
+    authorize @user
   end
 
   def create_array(services)
