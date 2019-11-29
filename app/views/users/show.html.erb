@@ -38,13 +38,25 @@
 
     <div class="info-part text-center " >
       <h1><i class="fas fa-comments-dollar"></i> Trademarks and Prices</h1>
-
-      <ul>
-        <% @user.trademarks.each do |trademark| %>
-        <ul class="list-inline ">
-        </ul>
-          <li><%= trademark.skill %> - RMB 100 </li>
-        <% end %>
+        <div class="cards">
+          <% @user.trademarks.each do |trademark| %>
+            <div class="card-category">
+              <div class="card-category-info">
+                <p> RMB <%= trademark.price_per_hour %> </p>
+                <br>
+                <p> <%= trademark.skill %> </p>
+              </div>
+              <div class="card-category-icons">
+                <%= link_to edit_user_trademark_path(current_user.id,trademark.id) do  %>
+                  <i class="fas fa-pen mr-3"></i>
+                <% end %>
+                <%= link_to user_trademark_path(current_user.id,trademark.id), method: 'DELETE' do  %>
+                  <i class="fas fa-trash-alt"></i>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
     </div>
       </ul>
     </div>

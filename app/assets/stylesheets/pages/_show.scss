@@ -67,3 +67,27 @@ li {
 .transaction-container {
   height: 250px;
 }
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px;
+  padding: 20px;
+}
+
+.card-category {
+  display: flex;
+  justify-content: space-between;
+  border: solid thin;
+  border-radius: 10px;
+  padding: 20px;
+  height: 150px
+}
+
+.card-category-info {
+  text-align: left;
+}
+
+.card-category-icons {
+  width: 30%
+}
