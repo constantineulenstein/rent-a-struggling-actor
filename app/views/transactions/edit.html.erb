@@ -6,7 +6,7 @@
         <%= f.input :trademark_id, collection: @trademark_array, label: "What service would you like #{@user.first_name} to do?" %>
         <div class="new-service">
           <%= f.input :optional_title, label: "Cool! Ask him to do whatever you want!", input_html: {value: @transaction.optional_title} %>
-          <%= f.input :price_per_hour, label: "How much are you willing to pay per hour?", input_html: {value: @transaction.price_per_hour}  %>
+          <%= f.input :price_per_hour, label: "How much are you willing to pay per hour in $?", input_html: {value: @transaction.price_per_hour}  %>
         </div>
         <%= f.input :location, input_html: {value: @transaction.location}  %>
         <%= f.input :date, input_html: {value: @transaction.date}  %>

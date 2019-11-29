@@ -1,41 +1,82 @@
 <div class="wrapper">
-  <div class="pending-container">
-    <h2>Pending Transactions</h2>
-
-    <% @user.transactions.each do |transaction| %>
+  <div class="pending-container my-3">
+    <h2 class="border-bottom pb-3">Pending Transactions</h2>
+    <% @user.trademarks.each do |trademark| %>
+      <% Transaction.where("trademark_id = ?", trademark.id).each do |transaction| %>
       <% if transaction.approved.nil? %>
-        <div class="approval-request">
-          <div><%=transaction.description %> - between <%= User.find(transaction.user_id).first_name %> and <%= @user.first_name %></div> <div><%= link_to 'Approve', user_request_approve_path(@transaction, :id => transaction.id), class: "btn btn-primary" %><%= link_to 'Reject', user_request_reject_path(@transaction, :id => transaction.id), class: "btn btn-danger" %></div>
+        <div class="approval-request p-3 my-3">
+          <div>
+            <% if transaction.optional_title.present? %>
+              <h3><%= transaction.optional_title %> for <%= transaction.price_per_hour %> $ / hour</h3>
+            <% else %>
+              <h3><%= trademark.skill %> for <%= trademark.price_per_hour %> $ / hour</h3>
+            <% end %>
+            <p>
+              <%=transaction.description %> - Requested by <%= User.find(transaction.user_id).first_name %> <%= User.find(transaction.user_id).last_name %>
+            </p>
+            <p>
+              <%= transaction.date %> in <%= transaction.location %>
+            </p>
+          </div>
+          <div>
+            <%= link_to 'Approve', user_request_approve_path(@transaction, :id => transaction.id), class: "btn btn-outline-success mr-3" %><%= link_to 'Reject', user_request_reject_path(@transaction, :id => transaction.id), class: "btn btn-outline-danger" %>
+          </div>
         </div>
+      <% end %>
       <% end %>
     <% end %>
   </div>
 
-  <div class="request-lists">
+  <div class="approval-container my-3">
+    <h2 class="border-bottom pb-3">Approved Transactions</h2>
 
-    <div class="info-part">
-      <h2>Approved Transactions</h2>
-
-      <% @user.transactions.each do |transaction| %>
-        <% if transaction.approved %>
-          <div class="approval-request">
-            <div><%=transaction.description %> - between <%= User.find(transaction.user_id).first_name %> and <%= @user.first_name %></div>
+    <% @user.trademarks.each do |trademark| %>
+    <% Transaction.where("trademark_id = ?", trademark.id).each do |transaction| %>
+      <% if transaction.approved %>
+        <div class="approval-request p-3 my-3">
+          <div>
+            <% if transaction.optional_title.present? %>
+              <h3><%= transaction.optional_title %> for <%= transaction.price_per_hour %> $ / hour</h3>
+            <% else %>
+              <h3><%= trademark.skill %> for <%= trademark.price_per_hour %> $ / hour</h3>
+            <% end %>
+            <p>
+              <%=transaction.description %> - Requested by <%= User.find(transaction.user_id).first_name %> <%= User.find(transaction.user_id).last_name %>
+            </p>
+            <p>
+              <%= transaction.date %> in <%= transaction.location %>
+            </p>
           </div>
-        <% end %>
+        </div>
       <% end %>
-    </div>
+    <% end %>
+    <% end %>
+  </div>
 
-    <div class="info-part">
-      <h2>Rejected Transactions</h2>
+  <div class="decline-container my-3">
+    <h2 class="border-bottom pb-3">Rejected Transactions</h2>
 
-      <% @user.transactions.each do |transaction| %>
-        <% if transaction.approved == false %>
-          <div class="approval-request">
-            <div><%=transaction.description %> - between <%= User.find(transaction.user_id).first_name %> and <%= @user.first_name %></div>
+    <% @user.trademarks.each do |trademark| %>
+    <% Transaction.where("trademark_id = ?", trademark.id).each do |transaction| %>
+      <% if transaction.approved == false %>
+        <div class="approval-request my-3 p-3">
+          <div>
+            <% if transaction.optional_title.present? %>
+              <h3><%= transaction.optional_title %> for <%= transaction.price_per_hour %> $ / hour</h3>
+            <% else %>
+              <h3><%= trademark.skill %> for <%= trademark.price_per_hour %> $ / hour</h3>
+            <% end %>
+            <p>
+              <%=transaction.description %> - Requested by <%= User.find(transaction.user_id).first_name %> <%= User.find(transaction.user_id).last_name %>
+            </p>
+            <p>
+              <%= transaction.date %> in <%= transaction.location %>
+            </p>
           </div>
-        <% end %>
+        </div>
       <% end %>
-    </div>
+    <% end %>
+    <% end %>
   </div>
 
 </div>
