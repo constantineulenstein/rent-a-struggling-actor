@@ -19,14 +19,34 @@ class TrademarksController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:user_id])
+    @trademark = Trademark.find(params[:id])
+    authorize @user
   end
 
   def update
-    @trademark.update(trademark_params)
-    redirect_to user_path(@user)
+    @user = User.find(params[:user_id])
+    @trademark = Trademark.find(params[:id])
+    @trademark.update(trademark_update_params(current_user.id))
+    redirect_to user_show_path(@user)
+    authorize @user
+  end
+
+  def destroy
+    @user = User.find(params[:user_id])
+    @trademark = Trademark.find(params[:id])
+    @trademark.destroy
+    authorize @user
+    redirect_to user_show_path(@user)
   end
 
   private
+
+  def trademark_update_params(trans)
+    data = params.require(:trademark).permit(:skill, :price_per_hour)
+    data[:user_id] = trans
+    return data
+  end
 
   def trademark_params
     params.require(:trademark).permit(:skill, :user_id)
