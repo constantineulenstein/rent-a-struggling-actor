@@ -22,6 +22,18 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
+    return true#record == user
+  end
+
+  def requests?
+    record == user
+  end
+
+  def approve?
+    record == user
+  end
+
+  def reject?
     record == user
   end
 end

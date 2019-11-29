@@ -23,7 +23,7 @@ const addMarkersToMap = (map, marker) => {
 const fitMapToMarkers = (map, marker) => {
   const bounds = new mapboxgl.LngLatBounds();
   bounds.extend([ marker.lng, marker.lat ])
-  map.fitBounds(bounds, { padding: 70, maxZoom: 15 });
+  map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
 };
 
 const initMapbox = (mapId, marker) => {
@@ -42,7 +42,7 @@ const insertMapHTML = () => {
   let mapHTML = `<div
       id='map${index}'
       style="width: 100%;
-      height: 600px;"
+      height: 200px;"
       data-marker=${markerObj}
     ></div>`;
     mapHTMLArray.push(mapHTML);

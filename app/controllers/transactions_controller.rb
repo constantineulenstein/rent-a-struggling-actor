@@ -25,11 +25,22 @@ class TransactionsController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:user_id])
+    @transaction = Transaction.find(params[:id])
+    @trademark_array = create_array(@user.trademarks)
+    authorize @user
   end
 
   def update
-    @transaction.update(transaction_params)
-    redirect_to user_path(@user)
+    @user = User.find(params[:user_id])
+    @transaction.update(transaction_update_params(current_user.id))
+    redirect_to user_show_path(@user)
+    authorize @user
+    # Trademark id is not passed, therefore rollnack thorugh validation
+  end
+
+  def destroy
+    raise
   end
 
   def create_array(services)
@@ -41,10 +52,36 @@ class TransactionsController < ApplicationController
     return array
   end
 
+  def approve
+    @transaction_id = params[:id]
+    @transaction = Transaction.find(@transaction_id)
+    @transaction.approved = true
+    @transaction.save
+    @user = User.find(@transaction.user_id)
+    authorize @user
+    redirect_to user_requests_path(current_user)
+  end
+
+  def reject
+    @transaction_id = params[:id]
+    @transaction = Transaction.find(@transaction_id)
+    @transaction.approved = false
+    @transaction.save
+    @user = User.find(@transaction.user_id)
+    authorize @user
+    redirect_to user_requests_path(current_user)
+  end
+
   private
 
   def transaction_params
     params.require(:transaction).permit(:user_id, :location, :date, :description, :trademark_id, :optional_title, :price_per_hour)
+  end
+
+  def transaction_update_params(trans)
+    data = params.require(:transaction).permit(:location, :date, :description, :trademark_id, :optional_title, :price_per_hour)
+    data[:user_id] = trans
+    return data
   end
 
   def find_transaction
