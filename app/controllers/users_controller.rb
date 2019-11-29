@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
 
   def convert_markers(things)
-      things.map do |transaction|
+    things.map do |transaction|
       {
         lat: transaction.latitude,
         lng: transaction.longitude,
