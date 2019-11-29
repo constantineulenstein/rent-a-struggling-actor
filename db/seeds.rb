@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.destroy_all
 Trademark.destroy_all
+User.destroy_all
 
 User.create(email: "user@gmail.com",
             password: "123456",
@@ -71,8 +71,10 @@ Trademark.create(skill: "Bundasliga", user_id: con.id)
               )
 end
 
-20.times do
-  user = User.create(email: Faker::Internet.email,
+20.times do |i|
+
+
+  user = User.create!(email: Faker::Internet.email,
               password: "123456",
               first_name: Faker::Name.first_name,
               last_name: Faker::Name.last_name,
@@ -81,9 +83,13 @@ end
               age: rand(18..80),
               location: Faker::Address.city,
               description: "I have appeared in over many film, television, and theatre productions. You may have seen them in many productions. Names ability to act has been recognized by the the board of actors with the actor award. I studied at a school. I can be reached at home.",
-              actor: true,
-              remote_photo_url: "https://picsum.photos/200",
-              )
+              actor: true)
+
+  gender = user.gender == "Male" ? "men" : "women"
+  url = "https://randomuser.me/api/portraits/#{gender}/#{i}.jpg"
+
+  user.remote_photo_url = url
+  user.save!
 
   2.times do
     Trademark.create(skill: ["Sewing","Tearing an apple in half with your hands","Dressing well", "Flipping eggs in a frying pan","Magic tricks", "Origami", "Juggling","Using chopsticks","Parallel Parking","Preparing a basic meal"].sample, user_id: user.id)
