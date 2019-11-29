@@ -12,7 +12,7 @@
               <h3><%= trademark.skill %> for <%= trademark.price_per_hour %> $ / hour</h3>
             <% end %>
             <p>
-              <%=transaction.description %> - Requested by <%= @user.first_name %> <%= @user.last_name %>
+              <%=transaction.description %> - Requested by <%= User.find(transaction.user_id).first_name %> <%= User.find(transaction.user_id).last_name %>
             </p>
             <p>
               <%= transaction.date %> in <%= transaction.location %>
@@ -41,7 +41,7 @@
               <h3><%= trademark.skill %> for <%= trademark.price_per_hour %> $ / hour</h3>
             <% end %>
             <p>
-              <%=transaction.description %> - Requested by <%= @user.first_name %> <%= @user.last_name %>
+              <%=transaction.description %> - Requested by <%= User.find(transaction.user_id).first_name %> <%= User.find(transaction.user_id).last_name %>
             </p>
             <p>
               <%= transaction.date %> in <%= transaction.location %>
@@ -67,7 +67,7 @@
               <h3><%= trademark.skill %> for <%= trademark.price_per_hour %> $ / hour</h3>
             <% end %>
             <p>
-              <%=transaction.description %> - Requested by <%= @user.first_name %> <%= @user.last_name %>
+              <%=transaction.description %> - Requested by <%= User.find(transaction.user_id).first_name %> <%= User.find(transaction.user_id).last_name %>
             </p>
             <p>
               <%= transaction.date %> in <%= transaction.location %>

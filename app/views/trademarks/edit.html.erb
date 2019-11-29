@@ -4,7 +4,7 @@
   <%= simple_form_for [@user, @trademark] do |f| %>
     <%= f.error_notification %>
         <%= f.input :skill, label: "What is your special skill?", input_html: {value: @trademark.skill} %>
-        <%= f.input :price_per_hour, label: "How much do you want to be paid per hour?", input_html: {value: @trademark.price_per_hour}  %>
+        <%= f.input :price_per_hour, label: "How much do you want to charge per hour in $?" , input_html: {value: @trademark.price_per_hour}  %>
 
     <div class="form-actions my-3">
       <%= f.button :submit, "Edit Transaction", class: "btn btn-outline-dark" %>
