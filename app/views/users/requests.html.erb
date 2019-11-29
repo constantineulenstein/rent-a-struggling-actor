@@ -5,7 +5,7 @@
       <% Transaction.where("trademark_id = ?", trademark.id).each do |transaction| %>
       <% if transaction.approved.nil? %>
         <div class="approval-request p-3 my-3">
-          <div>
+          <div class="w-75">
             <% if transaction.optional_title.present? %>
               <h3><%= transaction.optional_title %> for <%= transaction.price_per_hour %> $ / hour</h3>
             <% else %>

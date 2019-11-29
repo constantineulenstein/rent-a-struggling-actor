@@ -1,5 +1,4 @@
 <div class="main-container top">
-
   <div class="w-100">
     <div class="row">
       <div class="col-12 col-lg-4">
@@ -14,9 +13,7 @@
                 <li><%= @user.gender %> • <%= @user.age %></li>
                 <li><%= @user.location %></li>
               </ul>
-              <!--     <% if policy(@user).edit? %>
-          <%= link_to "Edit your page", edit_user_registration_path  %>
-        <% end %> -->
+
               <button name="button" type="Search" class="showbtn btn-flat">
                 <%= link_to "Book #{@user.first_name.capitalize}", new_user_transaction_path(@user.id)%>
               </button>
@@ -28,7 +25,7 @@
           </div>
 
         </div>
-        <% end %>
+
       </div>
       <div class="col-12 col-lg-8">
         <div class="info-part text-center " >
@@ -64,13 +61,12 @@
 
 <div class="transactions">
   <% @markers.each_with_index do |marker, index| %>
-  <% if marker[:approved] %>
-
-    <%= render 'transactions', :marker => marker, :index => index %>
-
+    <% if marker[:approved] %>
+      <%= render 'transactions', :marker => marker, :index => index %>
     <% end %>
   <% end %>
 </div>
+
 <script>
   let markers = <%= @markers.to_json.to_s.html_safe %>
 </script>

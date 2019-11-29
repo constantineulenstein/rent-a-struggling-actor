@@ -49,6 +49,6 @@ class TrademarksController < ApplicationController
   end
 
   def trademark_params
-    params.require(:trademark).permit(:skill, :user_id)
+    params.require(:trademark).permit(:skill, :price_per_hour, :user_id)
   end
 end
