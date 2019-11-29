@@ -68,6 +68,30 @@ li {
   height: 250px;
 }
 
+.trademarks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px;
+  padding: 20px;
+}
+
+.trademark-category {
+  display: flex;
+  justify-content: space-between;
+  border: solid thin;
+  border-radius: 10px;
+  padding: 20px;
+  height: 150px
+}
+
+.trademark-category-info {
+  text-align: left;
+}
+
+.trademark-category-icons {
+  width: 30%
+}
+
 .participants {
   font-size: 10px;
   color: #6D6E6A;
