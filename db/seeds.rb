@@ -83,8 +83,8 @@ end
               description: "I have appeared in over many film, television, and theatre productions. You may have seen them in many productions. Names ability to act has been recognized by the the board of actors with the actor award. I studied at a school. I can be reached at home.",
               actor: true)
 
-  user.gender == "Male" ? "men" : "women"
-  url = "https://randomuser.me/api/portraits/#{user.gender}/#{i}.jpg"
+  gender = user.gender == "Male" ? "men" : "women"
+  url = "https://randomuser.me/api/portraits/#{gender}/#{i}.jpg"
 
   user.remote_photo_url = url
   user.save!
