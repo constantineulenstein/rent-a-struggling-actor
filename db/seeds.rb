@@ -53,12 +53,12 @@ con = User.create(email: "constantin@gmail.com",
                   actor: true,
                   remote_photo_url: "https://avatars0.githubusercontent.com/u/55740765?v=4"
                   )
-Trademark.create(skill: "Be a smooth mf :)", user_id: leo.id)
-Trademark.create(skill: "Versatile", user_id: leo.id)
-Trademark.create(skill: "meeting parents", user_id: deniro.id)
-Trademark.create(skill: "blowing bubbles", user_id: deniro.id)
-Trademark.create(skill: "drinking beer", user_id: con.id)
-Trademark.create(skill: "Bundasliga", user_id: con.id)
+Trademark.create(skill: "Doing drugs in front of your friends such that they think you are cool - you pay for drugs", price_per_hour: 400, user_id: leo.id)
+Trademark.create(skill: "Bringing models to your party", price_per_hour: 1000, user_id: leo.id)
+Trademark.create(skill: "Meeting parents", price_per_hour: 110, user_id: deniro.id)
+Trademark.create(skill: "Pretending to be your friend", price_per_hour: 150, user_id: deniro.id)
+Trademark.create(skill: "Drinking beer", price_per_hour: 1500, user_id: con.id)
+Trademark.create(skill: "Bundesliga", price_per_hour: 2200, user_id: con.id)
 
 
 
@@ -90,7 +90,7 @@ end
   user.save!
 
   2.times do
-    Trademark.create(skill: ["Sewing","Tearing an apple in half with your hands","Dressing well", "Flipping eggs in a frying pan","Magic tricks", "Origami", "Juggling","Using chopsticks","Parallel Parking","Preparing a basic meal"].sample, user_id: user.id)
+    Trademark.create(skill: ["Sewing","Tearing an apple in half with your hands","Dressing well", "Flipping eggs in a frying pan","Magic tricks", "Origami", "Juggling","Using chopsticks","Parallel Parking","Preparing a basic meal"].sample, user_id: user.id, price_per_hour: (10..1000).to_a.sample)
   end
 end
 
