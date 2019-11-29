@@ -24,6 +24,8 @@ gem 'devise'
 
 gem 'pundit'
 
+gem 'rest-client'
+
 gem 'geocoder'
 
 gem 'dotenv-rails', groups: [:development, :test]

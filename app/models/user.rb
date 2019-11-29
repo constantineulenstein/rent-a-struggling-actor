@@ -16,6 +16,6 @@ class User < ApplicationRecord
     trademarks: [:skill]
   },
   using: {
-    tsearch: { prefix: true }
+    tsearch: { prefix: true, negation: true }
   }
 end

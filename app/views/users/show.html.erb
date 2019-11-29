@@ -83,16 +83,27 @@
         <div class="col-sm-8 p-4">
           <% if marker[:optional_title].present? %>
             <div class="d-flex justify-content-between">
-              <h3><%= marker[:optional_title] %></h3>
+              <div>
+                <h3 class="mb-0"><%= marker[:optional_title] %></h3>
+                <% if current_user.present? %>
+                  <% if current_user.id == marker[:user_id] %>
+                    <p class="participants">Request made by: <em>You</em> </p>
+                  <% else %>
+                    <p class="participants">Request made by: <%= User.find(marker[:user_id]).first_name %> <%= User.find(marker[:user_id]).last_name %> </p>
+                  <% end %>
+                <% end %>
+              </div>
               <div class="mr-3">
-                <%# if current_user.id == Trademark.find(marker[:trademark_id].user_id %>
-                  <%= link_to edit_user_transaction_path(Trademark.find(marker[:trademark_id]).user_id,marker[:id]) do  %>
-                    <i class="fas fa-pen mr-3"></i>
+                <% if current_user.present? %>
+                  <% if current_user.id == marker[:user_id] %>
+                    <%= link_to edit_user_transaction_path(Trademark.find(marker[:trademark_id]).user_id,marker[:id]) do  %>
+                      <i class="fas fa-pen mr-3"></i>
+                    <% end %>
+                    <%= link_to user_transaction_path(Trademark.find(marker[:trademark_id]).user_id,marker[:id]), method: 'DELETE' do  %>
+                      <i class="fas fa-trash-alt"></i>
+                    <% end %>
                   <% end %>
-                  <%= link_to user_transaction_path(Trademark.find(marker[:trademark_id]).user_id,marker[:id]), method: 'DELETE' do  %>
-                    <i class="fas fa-trash-alt"></i>
-                  <% end %>
-                <%# end %>
+                <% end %>
               </div>
             </div>
             <br>
@@ -103,12 +114,32 @@
                 <p class="my-0"><%= marker[:location] %></p>
                 <p class="my-0"><%= marker[:date].strftime("%A, %d %b %Y %l:%M %p") %></p>
               </div>
-              <h3 class="pr-5"><strong><%= marker[:price_per_hour] %> $/h</strong> </h3>
+              <h3 class="pr-3"><strong><%= marker[:price_per_hour] %> $/h</strong> </h3>
             </div>
           <% else %>
               <div class="d-flex justify-content-between">
-                 <h3><%= Trademark.find(marker[:trademark_id]).skill %></h3>
-
+                <div>
+                  <h3 class="mb-0"><%= Trademark.find(marker[:trademark_id]).skill %></h3>
+                  <% if current_user.present? %>
+                    <% if current_user.id == marker[:user_id] %>
+                      <p class="participants">Request made by: <em>You</em> </p>
+                    <% else %>
+                      <p class="participants">Request made by: <%= User.find(marker[:user_id]).first_name %> <%= User.find(marker[:user_id]).last_name %> </p>
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="mr-3">
+                <% if current_user.present? %>
+                  <% if current_user.id == marker[:user_id] %>
+                    <%= link_to edit_user_transaction_path(Trademark.find(marker[:trademark_id]).user_id,marker[:id]) do  %>
+                      <i class="fas fa-pen mr-3"></i>
+                    <% end %>
+                    <%= link_to user_transaction_path(Trademark.find(marker[:trademark_id]).user_id,marker[:id]), method: 'DELETE' do  %>
+                      <i class="fas fa-trash-alt"></i>
+                    <% end %>
+                  <% end %>
+                <% end %>
+                </div>
               </div>
               <br>
               <p class="my-0"><%= marker[:description] %></p>
@@ -118,7 +149,7 @@
                   <p class="my-0"><%= marker[:location] %></p>
                   <p class="my-0"><%= marker[:date].strftime("%A, %d %b %Y %l:%M %p") %></p>
                 </div>
-                <h3 class="pr-5"><strong><%= Trademark.find(marker[:trademark_id]).price_per_hour %> $/h</strong> </h3>
+                <h3 class="pr-3"><strong><%= Trademark.find(marker[:trademark_id]).price_per_hour %> $/h</strong> </h3>
               </div>
           <% end %>
         </div>
