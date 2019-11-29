@@ -1,71 +1,66 @@
 <div class="main-container top">
-  <div class="row">
-    <div class="col-12 col-lg-4">
-    <div class="sidebar-left">
-      <div class="sidebar">
-        <div class="profile-photo">
-          <%= cl_image_tag @user.photo, width: 300, height: 300, crop: :fill, class: "photo" %>
-        </div>
 
-        <h2> <%= @user.username %></h2>
+  <div class="w-100">
+    <div class="row">
+      <div class="col-12 col-lg-4">
+        <div class="sidebar-left">
+          <div class="sidebar">
+            <div class="profile-photo">
+              <%= cl_image_tag @user.photo, width: 300, height: 300, crop: :fill, class: "photo" %>
+            </div>
+            <h2> <%= @user.first_name %> <%= @user.last_name %></h2>
+            <ul>
+              <li><%= @user.username %>
+                <li><%= @user.gender %> • <%= @user.age %></li>
+                <li><%= @user.location %></li>
+              </ul>
+              <!--     <% if policy(@user).edit? %>
+          <%= link_to "Edit your page", edit_user_registration_path  %>
+        <% end %> -->
+              <button name="button" type="Search" class="showbtn btn-flat">
+                <%= link_to "Book #{@user.first_name.capitalize}", new_user_transaction_path(@user.id)%>
+              </button>
+            </div>
+            <div class="sidebar mt-3 ">
+              <h2>Bio</h2>
+              <p> <%= @user.description %></p>
+            </ul>
+          </div>
 
-        <ul>
-          <li><%= @user.gender %> • <%= @user.age %></li>
-          <li><%= @user.location %></li>
-        </ul>
-
-        <% if current_user != @user %>
-        <div class="btn-book">
-          <%= link_to "Book #{@user.username}", new_user_transaction_path(@user.id), class: "btn btn-primary button" %>
         </div>
         <% end %>
       </div>
-
-      <div class="sidebar mt-3 ">
-        <h2>Bio</h2>
-        <p> <%= @user.description %></p>
-        </ul>
+      <div class="col-12 col-lg-8">
+        <div class="info-part text-center " >
+          <h1><i class="fas fa-comments-dollar"></i> Trademarks and Prices</h1>
+          <div class="trademarks">
+            <% @user.trademarks.each do |trademark| %>
+              <div class="trademark-category">
+                <div class="trademark-category-info">
+                  <p> <%= trademark.skill %> </p>
+                  <p> $<%= trademark.price_per_hour %>/Hour</p>
+                  <% if current_user.present? %>
+                    <% if trademark.user_id == current_user.id %>
+                      <div class="trademark-category-icons">
+                        <%= link_to edit_user_trademark_path(current_user.id,trademark.id) do  %>
+                          <i class="fas fa-pen mr-3"></i>
+                        <% end %>
+                        <%= link_to user_trademark_path(current_user.id,trademark.id), method: 'DELETE' do  %>
+                          <i class="fas fa-trash-alt"></i>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
-    </div>
-
-
-
-
-    <div class="col-12 col-lg-8 ">
-
-    <div class="info-part text-center " >
-      <h1><i class="fas fa-comments-dollar"></i> Trademarks and Prices</h1>
-        <div class="trademarks">
-          <% @user.trademarks.each do |trademark| %>
-            <div class="trademark-category">
-              <div class="trademark-category-info">
-                <p> RMB <%= trademark.price_per_hour %> </p>
-                <br>
-                <p> <%= trademark.skill %> </p>
-              </div>
-              <% if current_user.present? %>
-                <% if trademark.user_id == current_user.id %>
-                  <div class="trademark-category-icons">
-                    <%= link_to edit_user_trademark_path(current_user.id,trademark.id) do  %>
-                      <i class="fas fa-pen mr-3"></i>
-                    <% end %>
-                    <%= link_to user_trademark_path(current_user.id,trademark.id), method: 'DELETE' do  %>
-                      <i class="fas fa-trash-alt"></i>
-                    <% end %>
-                  </div>
-                <% end %>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-    </div>
-      </ul>
-    </div>
-    </div>
-
   </div>
 </div>
+
 
 <div class="transactions">
   <% @markers.each_with_index do |marker, index| %>
@@ -76,7 +71,6 @@
     <% end %>
   <% end %>
 </div>
-
 <script>
   let markers = <%= @markers.to_json.to_s.html_safe %>
 </script>

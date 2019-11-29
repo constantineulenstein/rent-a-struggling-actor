@@ -1,8 +1,8 @@
 .card-container {
   display: flex;
-  justify-content: space-around;
-  padding: 10px;
-  margin-top: 10px;
+  flex-wrap: wrap;
+  padding: 50px 20px;
+  justify-content: space-evenly;
   // background-color: black;
 }
 
@@ -10,7 +10,7 @@
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  width: 500px;
+  width: 400px;
   border-radius: 5px;
 }
 
@@ -21,13 +21,13 @@
 }
 
 .card-trip h2 {
-  font-size: 16px;
+  font-size: 25px;
   font-weight: bold;
   margin: 0;
 }
 
 .card-trip p {
-  font-size: 12px;
+  font-size: 18px;
   opacity: .7;
   margin: 0;
 }
