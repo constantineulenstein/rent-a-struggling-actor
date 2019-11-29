@@ -26,7 +26,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def destroy?
-    true
+    return true
   end
 
   def requests?

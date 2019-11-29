@@ -38,15 +38,15 @@
 
     <div class="info-part text-center " >
       <h1><i class="fas fa-comments-dollar"></i> Trademarks and Prices</h1>
-        <div class="cards">
+        <div class="trademarks">
           <% @user.trademarks.each do |trademark| %>
-            <div class="card-category">
-              <div class="card-category-info">
+            <div class="trademark-category">
+              <div class="trademark-category-info">
                 <p> RMB <%= trademark.price_per_hour %> </p>
                 <br>
                 <p> <%= trademark.skill %> </p>
               </div>
-              <div class="card-category-icons">
+              <div class="trademark-category-icons">
                 <%= link_to edit_user_trademark_path(current_user.id,trademark.id) do  %>
                   <i class="fas fa-pen mr-3"></i>
                 <% end %>

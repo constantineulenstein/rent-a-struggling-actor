@@ -68,14 +68,14 @@ li {
   height: 250px;
 }
 
-.cards {
+.trademarks {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 16px;
   padding: 20px;
 }
 
-.card-category {
+.trademark-category {
   display: flex;
   justify-content: space-between;
   border: solid thin;
@@ -84,10 +84,10 @@ li {
   height: 150px
 }
 
-.card-category-info {
+.trademark-category-info {
   text-align: left;
 }
 
-.card-category-icons {
+.trademark-category-icons {
   width: 30%
 }
