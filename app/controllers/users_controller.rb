@@ -28,6 +28,10 @@ class UsersController < ApplicationController
   end
 
 
+  def requests
+    authorize @user
+  end
+
   def convert_markers(things)
       things.map do |transaction|
       {
@@ -42,14 +46,10 @@ class UsersController < ApplicationController
         existing: transaction.existing,
         optional_title: transaction.optional_title,
         price_per_hour: transaction.price_per_hour,
-        id: transaction.id
+        id: transaction.id,
+        approved: transaction.approved
       }
     end
-  end
-
-
-  def requests
-    authorize @user
   end
 
   private

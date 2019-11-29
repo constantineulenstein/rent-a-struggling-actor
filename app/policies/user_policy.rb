@@ -30,14 +30,14 @@ class UserPolicy < ApplicationPolicy
   end
 
   def requests?
-    record == user
+    true
   end
 
   def approve?
-    record == user
+    true
   end
 
   def reject?
-    record == user
+    true
   end
 end
