@@ -1,23 +1,18 @@
-<div class="container">
+<div class="container w-50">
   <h2 class="my-3">Book <%= @user.first_name %></h2>
-
   <%= simple_form_for [@user, @transaction] do |f| %>
     <%= f.error_notification %>
-        <%= f.input :trademark_id, collection: @trademark_array, label: "What service would you like #{@user.first_name} to do?" %>
-        <div class="new-service">
-          <%= f.input :optional_title, label: "Cool! Ask him to do whatever you want!" %>
-          <%= f.input :price_per_hour, label: "How much are you willing to pay per hour in $?" %>
-        </div>
-        <%= f.input :location %>
-        <%= f.input :date %>
-        <%= f.input :description %>
-        </div>
-    <div class="form-actions my-3">
-      <%= f.button :submit, "Book #{@user.first_name}", class: "btn btn-outline-dark" %>
+    <%= f.input :trademark_id, collection: @trademark_array, label: "What service would you like #{@user.first_name} to do?" %>
+    <div class="new-service">
+      <%= f.input :optional_title, label: "Cool! Ask him to do whatever you want!" %>
+      <%= f.input :price_per_hour, label: "How much are you willing to pay per hour in $?" %>
     </div>
-  <% end %>
-
-
-
-
+    <%= f.input :location %>
+    <%= f.input :date %>
+    <%= f.input :description %>
+  </div>
+  <div class="form-actions my-3">
+    <%= f.button :submit, "Book #{@user.first_name}", class: "btn btn-outline-dark" %>
+  </div>
+<% end %>
 </div>
